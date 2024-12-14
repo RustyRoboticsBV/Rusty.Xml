@@ -7,6 +7,7 @@ namespace Rusty.Xml
     /// </summary>
     public struct Vector3IElement : ITypedElement<Vector3I>
     {
+        /* Public properties. */
         public Element Element { get; private set; }
         public string Name => Element.Name;
         public Vector3I Value
@@ -27,6 +28,7 @@ namespace Rusty.Xml
             }
         }
 
+        /* Conversion operators. */
         public static implicit operator Vector3IElement(Element element)
         {
             return new Vector3IElement() { Element = element };
@@ -42,6 +44,15 @@ namespace Rusty.Xml
             return element.Value;
         }
 
+        /* Public methods. */
+        public override string ToString()
+        {
+            return ((Vector3I)this).ToString();
+        }
+
+        /// <summary>
+        /// Generate a Vector3I XML element.
+        /// </summary>
         public static Vector3IElement Generate(string name, Vector3I value)
         {
             Element element = new Element(name);

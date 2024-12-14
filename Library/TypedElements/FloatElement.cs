@@ -7,6 +7,7 @@ namespace Rusty.Xml
     /// </summary>
     public struct FloatElement : ITypedElement<float>
     {
+        /* Public properties. */
         public Element Element { get; private set; }
         public string Name => Element.Name;
         public float Value
@@ -15,6 +16,7 @@ namespace Rusty.Xml
             set => Element.InnerText = value.ToString();
         }
 
+        /* Conversion operators. */
         public static implicit operator FloatElement(Element element)
         {
             return new FloatElement() { Element = element };
@@ -30,6 +32,15 @@ namespace Rusty.Xml
             return element.Value;
         }
 
+        /* Public methods. */
+        public override string ToString()
+        {
+            return ((float)this).ToString();
+        }
+
+        /// <summary>
+        /// Generate an float XML element.
+        /// </summary>
         public static FloatElement Generate(string name, float value)
         {
             Element element = new Element(name);

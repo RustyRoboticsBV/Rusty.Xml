@@ -14,6 +14,8 @@ namespace Rusty.Xml
         /// </summary>
         public static Element Read(string filePath)
         {
+            filePath = GetAbsolutePath(filePath);
+
             XmlDocument document = new XmlDocument();
             document.Load(filePath);
             return new Element(document);
@@ -24,6 +26,8 @@ namespace Rusty.Xml
         /// </summary>
         public static void Write(Element root, string filePath)
         {
+            filePath = GetAbsolutePath(filePath);
+
             File.WriteAllText(filePath, root.GenerateXml());
         }
 
@@ -32,7 +36,21 @@ namespace Rusty.Xml
         /// </summary>
         public static bool Exists(string filePath)
         {
+            filePath = GetAbsolutePath(filePath);
+
             return File.Exists(filePath);
+        }
+
+        /* Private methods. */
+        /// <summary>
+        /// Convert a path to an absolute path. If the path already was an absolute path, the same path is returned.
+        /// </summary>
+        private static string GetAbsolutePath(string path)
+        {
+            if (path.StartsWith("."))
+                return Path.GetFullPath(path);
+            else
+                return path;
         }
     }
 }

@@ -7,6 +7,7 @@ namespace Rusty.Xml
     /// </summary>
     public struct PlaneElement : ITypedElement<Plane>
     {
+        /* Public properties. */
         public Element Element { get; private set; }
         public string Name => Element.Name;
         public Plane Value
@@ -31,6 +32,7 @@ namespace Rusty.Xml
             }
         }
 
+        /* Conversion operators. */
         public static implicit operator PlaneElement(Element element)
         {
             return new PlaneElement() { Element = element };
@@ -46,6 +48,15 @@ namespace Rusty.Xml
             return element.Value;
         }
 
+        /* Public methods. */
+        public override string ToString()
+        {
+            return ((Plane)this).ToString();
+        }
+
+        /// <summary>
+        /// Generate a plane XML element.
+        /// </summary>
         public static PlaneElement Generate(string name, Plane value)
         {
             Element element = new Element(name);

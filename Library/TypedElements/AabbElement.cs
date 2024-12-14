@@ -7,6 +7,7 @@ namespace Rusty.Xml
     /// </summary>
     public struct AabbElement : ITypedElement<Aabb>
     {
+        /* Public properties. */
         public Element Element { get; private set; }
         public string Name => Element.Name;
         public Aabb Value
@@ -33,6 +34,7 @@ namespace Rusty.Xml
             }
         }
 
+        /* Conversion operators. */
         public static implicit operator AabbElement(Element element)
         {
             return new AabbElement() { Element = element };
@@ -48,6 +50,15 @@ namespace Rusty.Xml
             return element.Value;
         }
 
+        /* Public methods. */
+        public override string ToString()
+        {
+            return ((Aabb)this).ToString();
+        }
+
+        /// <summary>
+        /// Generate an axis-aligned bounding-box XML element.
+        /// </summary>
         public static AabbElement Generate(string name, Aabb value)
         {
             Element element = new Element(name);

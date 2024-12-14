@@ -7,6 +7,7 @@ namespace Rusty.Xml
     /// </summary>
     public struct IntElement : ITypedElement<int>
     {
+        /* Public properties. */
         public Element Element { get; private set; }
         public string Name => Element.Name;
         public int Value
@@ -15,6 +16,7 @@ namespace Rusty.Xml
             set => Element.InnerText = value.ToString();
         }
 
+        /* Conversion operators. */
         public static implicit operator IntElement(Element element)
         {
             return new IntElement() { Element = element };
@@ -30,6 +32,15 @@ namespace Rusty.Xml
             return element.Value;
         }
 
+        /* Public methods. */
+        public override string ToString()
+        {
+            return ((int)this).ToString();
+        }
+
+        /// <summary>
+        /// Generate an int XML element.
+        /// </summary>
         public static IntElement Generate(string name, int value)
         {
             Element element = new Element(name);

@@ -5,6 +5,7 @@ namespace Rusty.Xml
     /// </summary>
     public struct StringElement : ITypedElement<string>
     {
+        /* Public properties. */
         public Element Element { get; private set; }
         public string Name => Element.Name;
         public string Value
@@ -13,6 +14,7 @@ namespace Rusty.Xml
             set => Element.InnerText = value;
         }
 
+        /* Conversion operators. */
         public static implicit operator StringElement(Element element)
         {
             return new StringElement() { Element = element };
@@ -28,6 +30,15 @@ namespace Rusty.Xml
             return element.Value;
         }
 
+        /* Public methods. */
+        public override string ToString()
+        {
+            return ((string)this).ToString();
+        }
+
+        /// <summary>
+        /// Generate a string XML element.
+        /// </summary>
         public static StringElement Generate(string name, string value)
         {
             Element element = new Element(name);

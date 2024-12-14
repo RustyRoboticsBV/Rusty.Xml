@@ -7,6 +7,7 @@ namespace Rusty.Xml
     /// </summary>
     public struct CharElement : ITypedElement<char>
     {
+        /* Public properties. */
         public Element Element { get; private set; }
         public string Name => Element.Name;
         public char Value
@@ -15,6 +16,7 @@ namespace Rusty.Xml
             set => Element.InnerText = value.ToString();
         }
 
+        /* Conversion operators. */
         public static implicit operator CharElement(Element element)
         {
             return new CharElement() { Element = element };
@@ -30,6 +32,15 @@ namespace Rusty.Xml
             return element.Value;
         }
 
+        /* Public methods. */
+        public override string ToString()
+        {
+            return ((char)this).ToString();
+        }
+
+        /// <summary>
+        /// Generate a char XML element.
+        /// </summary>
         public static CharElement Generate(string name, char value)
         {
             Element element = new Element(name);

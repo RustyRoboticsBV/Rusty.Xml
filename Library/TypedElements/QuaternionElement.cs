@@ -7,6 +7,7 @@ namespace Rusty.Xml
     /// </summary>
     public struct QuaternionElement : ITypedElement<Quaternion>
     {
+        /* Public properties. */
         public Element Element { get; private set; }
         public string Name => Element.Name;
         public Quaternion Value
@@ -29,6 +30,7 @@ namespace Rusty.Xml
             }
         }
 
+        /* Conversion operators. */
         public static implicit operator QuaternionElement(Element element)
         {
             return new QuaternionElement() { Element = element };
@@ -44,6 +46,15 @@ namespace Rusty.Xml
             return element.Value;
         }
 
+        /* Public methods. */
+        public override string ToString()
+        {
+            return ((Quaternion)this).ToString();
+        }
+
+        /// <summary>
+        /// Generate a quaternion XML element.
+        /// </summary>
         public static QuaternionElement Generate(string name, Quaternion value)
         {
             Element element = new Element(name);

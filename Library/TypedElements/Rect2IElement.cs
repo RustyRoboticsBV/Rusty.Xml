@@ -7,6 +7,7 @@ namespace Rusty.Xml
     /// </summary>
     public struct Rect2IElement : ITypedElement<Rect2I>
     {
+        /* Public properties. */
         public Element Element { get; private set; }
         public string Name => Element.Name;
         public Rect2I Value
@@ -29,6 +30,7 @@ namespace Rusty.Xml
             }
         }
 
+        /* Conversion operators. */
         public static implicit operator Rect2IElement(Element element)
         {
             return new Rect2IElement() { Element = element };
@@ -44,6 +46,15 @@ namespace Rusty.Xml
             return element.Value;
         }
 
+        /* Public methods. */
+        public override string ToString()
+        {
+            return ((Rect2I)this).ToString();
+        }
+
+        /// <summary>
+        /// Generate a Rect2I XML element.
+        /// </summary>
         public static Rect2IElement Generate(string name, Rect2I value)
         {
             Element element = new Element(name);

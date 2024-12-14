@@ -7,6 +7,7 @@ namespace Rusty.Xml
     /// </summary>
     public struct BoolElement : ITypedElement<bool>
     {
+        /* Public properties. */
         public Element Element { get; private set; }
         public string Name => Element.Name;
         public bool Value
@@ -15,6 +16,7 @@ namespace Rusty.Xml
             set => Element.InnerText = value.ToString();
         }
 
+        /* Conversion operators. */
         public static implicit operator BoolElement(Element element)
         {
             return new BoolElement() { Element = element };
@@ -30,6 +32,15 @@ namespace Rusty.Xml
             return element.Value;
         }
 
+        /* Public methods. */
+        public override string ToString()
+        {
+            return ((bool)this).ToString();
+        }
+
+        /// <summary>
+        /// Generate a bool XML element.
+        /// </summary>
         public static BoolElement Generate(string name, bool value)
         {
             Element element = new Element(name);
