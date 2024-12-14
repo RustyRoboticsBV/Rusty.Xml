@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿#if GODOT
+using Godot;
 
 namespace Rusty.Xml
 {
@@ -72,3 +73,4 @@ namespace Rusty.Xml
         }
     }
 }
+#endif
