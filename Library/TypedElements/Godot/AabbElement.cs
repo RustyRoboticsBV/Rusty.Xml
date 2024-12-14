@@ -58,7 +58,7 @@ namespace Rusty.Xml
         }
 
         /// <summary>
-        /// Generate an axis-aligned bounding-box XML element.
+        /// Generate an Aabb XML element.
         /// </summary>
         public static AabbElement Generate(string name, Aabb value)
         {
