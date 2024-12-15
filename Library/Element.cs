@@ -73,26 +73,26 @@ namespace Rusty.Xml
         }
 
         /// <summary>
-        /// Create a new XML element from a System.XmlDocument.
-        /// </summary>
-        internal Element(XmlDocument doc)
-        {
-            foreach (XmlNode child in doc.ChildNodes)
-            {
-                if (child.NodeType == XmlNodeType.Element)
-                {
-                    FromXmlNode(child);
-                    return;
-                }
-            }
-        }
-
-        /// <summary>
         /// Create a new XML element object from a System.XmlNode.
         /// </summary>
         internal Element(XmlNode node)
         {
-            FromXmlNode(node);
+            name = node.Name;
+
+            attributes = new List<Attribute>();
+            foreach (XmlAttribute attribute in node.Attributes)
+            {
+                attributes.Add(new Attribute(attribute.Name, attribute.Value));
+            }
+
+            innerText = node.InnerText;
+
+            children = new List<Element>();
+            foreach (XmlNode child in node.ChildNodes)
+            {
+                if (child.NodeType == XmlNodeType.Element)
+                    children.Add(new Element(child));
+            }
         }
 
         /* Public methods. */
@@ -126,29 +126,6 @@ namespace Rusty.Xml
         }
 
         /* Private methods. */
-        /// <summary>
-        /// TODO: Remove.
-        /// </summary>
-        private void FromXmlNode(XmlNode node)
-        {
-            name = node.Name;
-
-            attributes = new List<Attribute>();
-            foreach (XmlAttribute attribute in node.Attributes)
-            {
-                attributes.Add(new Attribute(attribute.Name, attribute.Value));
-            }
-
-            innerText = node.InnerText;
-
-            children = new List<Element>();
-            foreach (XmlNode child in node.ChildNodes)
-            {
-                if (child.NodeType == XmlNodeType.Element)
-                    children.Add(new Element(child));
-            }
-        }
-
         /// <summary>
         /// Create XML text for this element, starting at some indentation level.
         /// </summary>

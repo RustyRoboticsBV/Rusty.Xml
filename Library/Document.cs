@@ -1,35 +1,99 @@
+#if GODOT
+using Godot;
+using System;
+
+#elif UNITY_5_3_OR_NEWER
+using UnityEngine;
+#endif
+
 using System.IO;
 using System.Xml;
 
 namespace Rusty.Xml
 {
-    // TODO: Make non-static.
     /// <summary>
-    /// Utility for reading or creating XML documents.
+    /// An XML document.
     /// </summary>
-    public static class Document
+    [Serializable]
+    public class Document
     {
+        /* Fields. */
+#if GODOT
+        [Export] Element root;
+#elif UNITY_5_3_OR_NEWER
+        [SerializeField] Element root;
+#else
+        private Element root;
+#endif
+
+        /* Public properties. */
+        /// <summary>
+        /// The root element of this XML document.
+        /// </summary>
+        public Element Root
+        {
+            get => root;
+            set => root = value;
+        }
+
+        /* Constructors. */
+        /// <summary>
+        /// Create a new XML document from a root XML element.
+        /// </summary>
+        public Document(Element root)
+        {
+            this.root = root;
+        }
+
+        /// <summary>
+        /// Create an XML document object by loading it from a file.
+        /// </summary>
+        public Document(string filePath)
+        {
+            Read(filePath);
+        }
+
+        /* Conversion operators. */
+        /// <summary>
+        /// Convert to an XML element by returning the document's root element.
+        /// </summary>
+        public static implicit operator Element(Document document)
+        {
+            return document.Root;
+        }
+
         /* Public methods. */
         /// <summary>
-        /// Read an XML document and return the root node.
+        /// Read contents from an XML file. Deletes the current contents of the XML document object.
         /// </summary>
-        public static Element Read(string filePath)
+        public void Read(string filePath)
         {
             filePath = GetAbsolutePath(filePath);
 
             XmlDocument document = new XmlDocument();
             document.Load(filePath);
-            return new Element(document);
+            root = FindRoot(document);
         }
 
         /// <summary>
         /// Write an XML document to a file.
         /// </summary>
-        public static void Write(Element root, string filePath)
+        public void Write(string filePath)
         {
             filePath = GetAbsolutePath(filePath);
 
-            File.WriteAllText(filePath, root.GenerateXml());
+            File.WriteAllText(filePath, GenerateXml());
+        }
+
+        /// <summary>
+        /// Serialize this XML document.
+        /// </summary>
+        public string GenerateXml()
+        {
+            if (root != null)
+                return root.GenerateXml();
+            else
+                return "";
         }
 
         /// <summary>
@@ -52,6 +116,19 @@ namespace Rusty.Xml
                 return Path.GetFullPath(path);
             else
                 return path;
+        }
+
+        /// <summary>
+        /// Find the root element of an System.XmlDocument.
+        /// </summary>
+        private static Element FindRoot(XmlDocument document)
+        {
+            foreach (XmlNode child in document.ChildNodes)
+            {
+                if (child.NodeType == XmlNodeType.Element)
+                    return new Element(child);
+            }
+            return null;
         }
     }
 }

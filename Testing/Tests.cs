@@ -3,7 +3,14 @@ using System;
 
 try
 {
-    Element root = Document.Read("../../../Test.xml");
+    string path = "../../../Test.xml";
+    Document document = new Document(path);
+    Element root = document.Root;
+    Console.WriteLine($"Opened file: '{path}'");
+    Console.WriteLine(document.GenerateXml());
+
+    Console.WriteLine();
+    Console.WriteLine("Elements:");
     Console.WriteLine("bool:\t\t" + (BoolElement)root.GetChild("bool"));
     Console.WriteLine("int:\t\t" + (IntElement)root.GetChild("int"));
     Console.WriteLine("float:\t\t" + (FloatElement)root.GetChild("float"));
@@ -21,6 +28,9 @@ try
     Console.WriteLine("Rect2I:\t\t" + (Rect2IElement)root.GetChild("Rect2I"));
     Console.WriteLine("Aabb:\t\t" + (AabbElement)root.GetChild("Aabb"));
     Console.WriteLine("Color:\t\t" + (ColorElement)root.GetChild("Color"));
+    Console.WriteLine("Transform2D:\t" + (Transform2DElement)root.GetChild("Transform2D"));
+    Console.WriteLine("Basis:\t\t" + (BasisElement)root.GetChild("Basis"));
+    Console.WriteLine("Transform3D:\t" + (Transform3DElement)root.GetChild("Transform3D"));
 }
 catch (Exception ex)
 {

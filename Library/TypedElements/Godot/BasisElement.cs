@@ -30,13 +30,13 @@ namespace Rusty.Xml
             set
             {
                 Element.Children[0].InnerText = value.X.X.ToString();
-                Element.Children[1].InnerText = value.X.Y.ToString();
-                Element.Children[2].InnerText = value.X.Z.ToString();
-                Element.Children[3].InnerText = value.Y.X.ToString();
+                Element.Children[1].InnerText = value.Y.X.ToString();
+                Element.Children[2].InnerText = value.Z.X.ToString();
+                Element.Children[3].InnerText = value.X.Y.ToString();
                 Element.Children[4].InnerText = value.Y.Y.ToString();
-                Element.Children[5].InnerText = value.Y.Z.ToString();
-                Element.Children[6].InnerText = value.Z.X.ToString();
-                Element.Children[7].InnerText = value.Z.Y.ToString();
+                Element.Children[5].InnerText = value.Z.Y.ToString();
+                Element.Children[6].InnerText = value.X.Z.ToString();
+                Element.Children[7].InnerText = value.Y.Z.ToString();
                 Element.Children[8].InnerText = value.Z.Z.ToString();
             }
         }
@@ -70,13 +70,13 @@ namespace Rusty.Xml
         {
             Element element = new Element(name);
             element.AddChild(FloatElement.Generate("xx", value.X.X));
-            element.AddChild(FloatElement.Generate("xy", value.X.Y));
-            element.AddChild(FloatElement.Generate("xz", value.X.Z));
             element.AddChild(FloatElement.Generate("yx", value.Y.X));
-            element.AddChild(FloatElement.Generate("yy", value.Y.Y));
-            element.AddChild(FloatElement.Generate("yz", value.Y.Z));
             element.AddChild(FloatElement.Generate("zx", value.Z.X));
+            element.AddChild(FloatElement.Generate("xy", value.X.Y));
+            element.AddChild(FloatElement.Generate("yy", value.Y.Y));
             element.AddChild(FloatElement.Generate("zy", value.Z.Y));
+            element.AddChild(FloatElement.Generate("xz", value.X.Z));
+            element.AddChild(FloatElement.Generate("yz", value.Y.Z));
             element.AddChild(FloatElement.Generate("zz", value.Z.Z));
             return (BasisElement)element;
         }
