@@ -1,5 +1,8 @@
 namespace Rusty.Xml
 {
+    /// <summary>
+    /// An interface for XML element parsers.
+    /// </summary>
     public interface ITypedElement<T>
     {
         /// <summary>

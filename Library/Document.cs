@@ -3,6 +3,7 @@ using System.Xml;
 
 namespace Rusty.Xml
 {
+    // TODO: Make non-static.
     /// <summary>
     /// Utility for reading or creating XML documents.
     /// </summary>
