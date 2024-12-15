@@ -52,7 +52,7 @@ namespace Rusty.Xml
         }
 
         /* Public methods. */
-        public override string ToString()
+        public readonly override string ToString()
         {
             return ((Aabb)this).ToString();
         }
@@ -62,7 +62,7 @@ namespace Rusty.Xml
         /// </summary>
         public static AabbElement Generate(string name, Aabb value)
         {
-            Element element = new Element(name);
+            Element element = new Element(name, "");
             element.AddChild(FloatElement.Generate("x", value.Position.X));
             element.AddChild(FloatElement.Generate("y", value.Position.Y));
             element.AddChild(FloatElement.Generate("z", value.Position.Z));

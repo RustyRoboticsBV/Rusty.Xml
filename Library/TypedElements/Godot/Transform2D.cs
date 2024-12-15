@@ -52,7 +52,7 @@ namespace Rusty.Xml
         }
 
         /* Public methods. */
-        public override string ToString()
+        public readonly override string ToString()
         {
             return ((Transform2D)this).ToString();
         }
@@ -62,7 +62,7 @@ namespace Rusty.Xml
         /// </summary>
         public static Transform2DElement Generate(string name, Transform2D value)
         {
-            Element element = new Element(name);
+            Element element = new Element(name, "");
             element.AddChild(FloatElement.Generate("xx", value.X.X));
             element.AddChild(FloatElement.Generate("xy", value.X.Y));
             element.AddChild(FloatElement.Generate("yx", value.Y.X));

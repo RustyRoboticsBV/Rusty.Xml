@@ -48,7 +48,7 @@ namespace Rusty.Xml
         }
 
         /* Public methods. */
-        public override string ToString()
+        public readonly override string ToString()
         {
             return ((Rect2)this).ToString();
         }
@@ -58,7 +58,7 @@ namespace Rusty.Xml
         /// </summary>
         public static Rect2Element Generate(string name, Rect2 value)
         {
-            Element element = new Element(name);
+            Element element = new Element(name, "");
             element.AddChild(FloatElement.Generate("x", value.Position.X));
             element.AddChild(FloatElement.Generate("y", value.Position.Y));
             element.AddChild(FloatElement.Generate("w", value.Size.X));

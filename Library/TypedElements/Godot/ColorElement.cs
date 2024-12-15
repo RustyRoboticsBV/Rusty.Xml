@@ -48,7 +48,7 @@ namespace Rusty.Xml
         }
 
         /* Public methods. */
-        public override string ToString()
+        public readonly override string ToString()
         {
             return ((Color)this).ToString();
         }
@@ -58,7 +58,7 @@ namespace Rusty.Xml
         /// </summary>
         public static ColorElement Generate(string name, Color value, bool alpha = true)
         {
-            Element element = new Element(name);
+            Element element = new Element(name, "");
             element.AddChild(FloatElement.Generate("r", value.R));
             element.AddChild(FloatElement.Generate("g", value.G));
             element.AddChild(FloatElement.Generate("b", value.B));

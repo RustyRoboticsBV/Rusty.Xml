@@ -64,7 +64,7 @@ namespace Rusty.Xml
         }
 
         /* Public methods. */
-        public override string ToString()
+        public readonly override string ToString()
         {
             return ((Transform3D)this).ToString();
         }
@@ -74,7 +74,7 @@ namespace Rusty.Xml
         /// </summary>
         public static Transform3DElement Generate(string name, Transform3D value)
         {
-            Element element = new Element(name);
+            Element element = new Element(name, "");
             element.AddChild(FloatElement.Generate("xx", value.Basis.X.X));
             element.AddChild(FloatElement.Generate("yx", value.Basis.Y.X));
             element.AddChild(FloatElement.Generate("zx", value.Basis.Z.X));

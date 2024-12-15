@@ -28,10 +28,10 @@ namespace Rusty.Xml
         [SerializeField] string innerText = "";
         [SerializeField] List<Element> children = new List<Element>();
 #else
-        string name = "";
-        List<Attribute> attributes = new List<Attribute>();
-        string innerText = "";
-        List<Element> children = new List<Element>();
+        private string name = "";
+        private List<Attribute> attributes = new List<Attribute>();
+        private string innerText = "";
+        private List<Element> children = new List<Element>();
 #endif
 
         /* Public properties. */
@@ -64,12 +64,24 @@ namespace Rusty.Xml
         /// <summary>
         /// Create a new XML element.
         /// </summary>
-        public Element(string name, string innerText = "")
+        public Element(string name, string innerText)
         {
             this.name = name;
             attributes = new List<Attribute>();
             this.innerText = innerText;
             children = new List<Element>();
+        }
+
+        /// <summary>
+        /// Create a new XML element from a string of XML code.
+        /// </summary>
+        public Element(string xml)
+        {
+            Document document = new Document("", xml);
+            name = document.Root.name;
+            attributes = document.Root.attributes;
+            innerText = document.Root.innerText;
+            children = document.Root.children;
         }
 
         /// <summary>

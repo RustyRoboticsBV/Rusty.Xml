@@ -22,8 +22,8 @@ namespace Rusty.Xml
         [SerializeField] readonly string name;
         [SerializeField] readonly string value;
 #else
-        readonly string name;
-        readonly string value;
+        private readonly string name;
+        private readonly string value;
 #endif
 
         /* Public properties. */

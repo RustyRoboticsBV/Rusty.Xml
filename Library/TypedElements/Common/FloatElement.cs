@@ -33,7 +33,7 @@ namespace Rusty.Xml
         }
 
         /* Public methods. */
-        public override string ToString()
+        public readonly override string ToString()
         {
             return ((float)this).ToString();
         }
@@ -43,7 +43,7 @@ namespace Rusty.Xml
         /// </summary>
         public static FloatElement Generate(string name, float value)
         {
-            Element element = new Element(name);
+            Element element = new Element(name, "");
             FloatElement floatElement = element;
             floatElement.Value = value;
             return floatElement;

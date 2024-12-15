@@ -33,7 +33,7 @@ namespace Rusty.Xml
         }
 
         /* Public methods. */
-        public override string ToString()
+        public readonly override string ToString()
         {
             return ((int)this).ToString();
         }
@@ -43,7 +43,7 @@ namespace Rusty.Xml
         /// </summary>
         public static IntElement Generate(string name, int value)
         {
-            Element element = new Element(name);
+            Element element = new Element(name, "");
             IntElement intElement = element;
             intElement.Value = value;
             return intElement;

@@ -48,7 +48,7 @@ namespace Rusty.Xml
         }
 
         /* Public methods. */
-        public override string ToString()
+        public readonly override string ToString()
         {
             return ((Quaternion)this).ToString();
         }
@@ -58,7 +58,7 @@ namespace Rusty.Xml
         /// </summary>
         public static QuaternionElement Generate(string name, Quaternion value)
         {
-            Element element = new Element(name);
+            Element element = new Element(name, "");
             element.AddChild(FloatElement.Generate("x", value.X));
             element.AddChild(FloatElement.Generate("y", value.Y));
             element.AddChild(FloatElement.Generate("z", value.Z));

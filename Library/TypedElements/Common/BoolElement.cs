@@ -33,7 +33,7 @@ namespace Rusty.Xml
         }
 
         /* Public methods. */
-        public override string ToString()
+        public readonly override string ToString()
         {
             return ((bool)this).ToString();
         }
@@ -43,7 +43,7 @@ namespace Rusty.Xml
         /// </summary>
         public static BoolElement Generate(string name, bool value)
         {
-            Element element = new Element(name);
+            Element element = new Element(name, "");
             BoolElement boolElement = element;
             boolElement.Value = value;
             return boolElement;

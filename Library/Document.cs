@@ -19,14 +19,25 @@ namespace Rusty.Xml
     {
         /* Fields. */
 #if GODOT
+        [Export] string name;
         [Export] Element root;
 #elif UNITY_5_3_OR_NEWER
+        [SerializeField] string name;
         [SerializeField] Element root;
 #else
+        private string name;
         private Element root;
 #endif
 
         /* Public properties. */
+        /// <summary>
+        /// The name of the XML document.
+        /// </summary>
+        public string Name
+        {
+            get => name;
+            set => name = value;
+        }
         /// <summary>
         /// The root element of this XML document.
         /// </summary>
@@ -40,9 +51,21 @@ namespace Rusty.Xml
         /// <summary>
         /// Create a new XML document from a root XML element.
         /// </summary>
-        public Document(Element root)
+        public Document(string name, Element root)
         {
+            this.name = name;
             this.root = root;
+        }
+
+        /// <summary>
+        /// Create a new XML document from a string of XML code.
+        /// </summary>
+        public Document(string name, string xml)
+        {
+            this.name = name;
+            XmlDocument document = new XmlDocument();
+            document.LoadXml(xml);
+            root = FindRoot(document);
         }
 
         /// <summary>
@@ -50,6 +73,7 @@ namespace Rusty.Xml
         /// </summary>
         public Document(string filePath)
         {
+            name = Path.GetFileName(filePath);
             Read(filePath);
         }
 

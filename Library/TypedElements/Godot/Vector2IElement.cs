@@ -44,7 +44,7 @@ namespace Rusty.Xml
         }
 
         /* Public methods. */
-        public override string ToString()
+        public readonly override string ToString()
         {
             return ((Vector2I)this).ToString();
         }
@@ -54,7 +54,7 @@ namespace Rusty.Xml
         /// </summary>
         public static Vector2IElement Generate(string name, Vector2I value)
         {
-            Element element = new Element(name);
+            Element element = new Element(name, "");
             element.AddChild(IntElement.Generate("x", value.X));
             element.AddChild(IntElement.Generate("y", value.Y));
             return (Vector2IElement)element;

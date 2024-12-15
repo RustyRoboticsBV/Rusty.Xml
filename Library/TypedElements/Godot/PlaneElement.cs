@@ -50,7 +50,7 @@ namespace Rusty.Xml
         }
 
         /* Public methods. */
-        public override string ToString()
+        public readonly override string ToString()
         {
             return ((Plane)this).ToString();
         }
@@ -60,7 +60,7 @@ namespace Rusty.Xml
         /// </summary>
         public static PlaneElement Generate(string name, Plane value)
         {
-            Element element = new Element(name);
+            Element element = new Element(name, "");
             element.AddChild(FloatElement.Generate("x", value.Normal.X));
             element.AddChild(FloatElement.Generate("y", value.Normal.Y));
             element.AddChild(FloatElement.Generate("z", value.Normal.Z));

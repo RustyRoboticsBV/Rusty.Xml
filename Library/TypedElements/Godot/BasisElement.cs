@@ -58,7 +58,7 @@ namespace Rusty.Xml
         }
 
         /* Public methods. */
-        public override string ToString()
+        public readonly override string ToString()
         {
             return ((Basis)this).ToString();
         }
@@ -68,7 +68,7 @@ namespace Rusty.Xml
         /// </summary>
         public static BasisElement Generate(string name, Basis value)
         {
-            Element element = new Element(name);
+            Element element = new Element(name, "");
             element.AddChild(FloatElement.Generate("xx", value.X.X));
             element.AddChild(FloatElement.Generate("yx", value.Y.X));
             element.AddChild(FloatElement.Generate("zx", value.Z.X));
