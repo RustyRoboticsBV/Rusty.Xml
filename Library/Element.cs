@@ -126,7 +126,25 @@ namespace Rusty.Xml
                 if (child.Name == name)
                     return child;
             }
-            throw new KeyNotFoundException($"XML element {Name} has no child element with the name '{name}'.");
+            throw new KeyNotFoundException($"XML element '{Name}' has no child element with the name '{name}'.");
+        }
+
+        public T GetChild<T>(string name) where T : Element
+        {
+            Element element = GetChild(name);
+        }
+
+        /// <summary>
+        /// Get an attribute by name.
+        /// </summary>
+        public Attribute GetAttribute(string name)
+        {
+            foreach (Attribute attribute in Attributes)
+            {
+                if (attribute.Name == name)
+                    return attribute;
+            }
+            throw new KeyNotFoundException($"XML element '{Name}' has no attribute with the name '{name}'.");
         }
 
         /// <summary>

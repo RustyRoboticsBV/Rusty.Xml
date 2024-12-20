@@ -12,29 +12,37 @@ namespace Rusty.Xml
     /// An attribute of an XML element.
     /// </summary>
     [Serializable]
-    public readonly struct Attribute
+    public class Attribute
     {
         /* Fields. */
 #if GODOT
-        [Export] readonly string name;
-        [Export] readonly string value;
+        [Export] string name;
+        [Export] string value;
 #elif UNITY_5_3_OR_NEWER
-        [SerializeField] readonly string name;
-        [SerializeField] readonly string value;
+        [SerializeField] string name;
+        [SerializeField] string value;
 #else
-        private readonly string name;
-        private readonly string value;
+        private string name;
+        private string value;
 #endif
 
         /* Public properties. */
         /// <summary>
         /// The name of this XML attribute.
         /// </summary>
-        public string Name => name;
+        public string Name
+        {
+            get => name;
+            set => name = value;
+        }
         /// <summary>
         /// The value of this XML attribute.
         /// </summary>
-        public string Value => value;
+        public string Value
+        {
+            get => value;
+            set => this.value = value;
+        }
 
         /* Constuctors. */
         /// <summary>
@@ -46,21 +54,13 @@ namespace Rusty.Xml
             this.value = value;
         }
 
-        /* Public methods. */
+        /* Casting operators. */
         /// <summary>
-        /// Return a copy of this XML attribute with a different name.
+        /// Returns the attribute's value.
         /// </summary>
-        public readonly Attribute Rename(string name)
+        public static implicit operator string(Attribute attribute)
         {
-            return new Attribute(name, value);
-        }
-
-        /// <summary>
-        /// Return a copy of this XML attribute with a different value.
-        /// </summary>
-        public readonly Attribute Revalue(string value)
-        {
-            return new Attribute(name, value);
+            return attribute.value;
         }
     }
 }
