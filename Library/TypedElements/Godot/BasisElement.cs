@@ -6,10 +6,10 @@ namespace Rusty.Xml
     /// <summary>
     /// An XML element parser for 3x3 rotation & scale matrix.
     /// </summary>
-    public struct BasisElement : ITypedElement<Basis>
+    public struct BasisElement : TypedElement<Basis>
     {
         /* Public properties. */
-        public Element Element { get; private set; }
+        public Element Element { get; set; }
         public string Name => Element.Name;
         public Basis Value
         {

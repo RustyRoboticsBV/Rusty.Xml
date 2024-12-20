@@ -6,10 +6,10 @@ namespace Rusty.Xml
     /// <summary>
     /// An XML element parser for 3D transform matrix.
     /// </summary>
-    public struct Transform3DElement : ITypedElement<Transform3D>
+    public struct Transform3DElement : TypedElement<Transform3D>
     {
         /* Public properties. */
-        public Element Element { get; private set; }
+        public Element Element { get; set; }
         public string Name => Element.Name;
         public Transform3D Value
         {

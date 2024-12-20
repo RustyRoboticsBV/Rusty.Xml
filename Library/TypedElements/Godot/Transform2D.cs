@@ -6,10 +6,10 @@ namespace Rusty.Xml
     /// <summary>
     /// An XML element parser for 2D transform matrix.
     /// </summary>
-    public struct Transform2DElement : ITypedElement<Transform2D>
+    public struct Transform2DElement : TypedElement<Transform2D>
     {
         /* Public properties. */
-        public Element Element { get; private set; }
+        public Element Element { get; set; }
         public string Name => Element.Name;
         public Transform2D Value
         {

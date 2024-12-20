@@ -6,10 +6,10 @@ namespace Rusty.Xml
     /// <summary>
     /// An XML element parser for planes.
     /// </summary>
-    public struct PlaneElement : ITypedElement<Plane>
+    public struct PlaneElement : TypedElement<Plane>
     {
         /* Public properties. */
-        public Element Element { get; private set; }
+        public Element Element { get; set; }
         public string Name => Element.Name;
         public Plane Value
         {

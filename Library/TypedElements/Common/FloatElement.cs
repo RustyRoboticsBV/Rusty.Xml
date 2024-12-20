@@ -5,10 +5,10 @@ namespace Rusty.Xml
     /// <summary>
     /// An XML element parser for floating-point numbers.
     /// </summary>
-    public struct FloatElement : ITypedElement<float>
+    public struct FloatElement : TypedElement<float>
     {
         /* Public properties. */
-        public Element Element { get; private set; }
+        public Element Element { get; set; }
         public string Name => Element.Name;
         public float Value
         {

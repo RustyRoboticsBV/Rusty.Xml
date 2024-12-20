@@ -6,10 +6,10 @@ namespace Rusty.Xml
     /// <summary>
     /// An XML element parser for integer vectors with two elements.
     /// </summary>
-    public struct Vector3IElement : ITypedElement<Vector3I>
+    public struct Vector3IElement : TypedElement<Vector3I>
     {
         /* Public properties. */
-        public Element Element { get; private set; }
+        public Element Element { get; set; }
         public string Name => Element.Name;
         public Vector3I Value
         {

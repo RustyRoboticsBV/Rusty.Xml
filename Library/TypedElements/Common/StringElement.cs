@@ -3,10 +3,10 @@ namespace Rusty.Xml
     /// <summary>
     /// An XML element parser for text strings.
     /// </summary>
-    public struct StringElement : ITypedElement<string>
+    public struct StringElement : TypedElement<string>
     {
         /* Public properties. */
-        public Element Element { get; private set; }
+        public Element Element { get; set; }
         public string Name => Element.Name;
         public string Value
         {

@@ -5,10 +5,10 @@ namespace Rusty.Xml
     /// <summary>
     /// An XML element parser for booleans.
     /// </summary>
-    public struct BoolElement : ITypedElement<bool>
+    public struct BoolElement : TypedElement<bool>
     {
         /* Public properties. */
-        public Element Element { get; private set; }
+        public Element Element { get; set; }
         public string Name => Element.Name;
         public bool Value
         {

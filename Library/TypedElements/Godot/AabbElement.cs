@@ -6,10 +6,10 @@ namespace Rusty.Xml
     /// <summary>
     /// An XML element parser for 3D, floating-point, axis-aligned bounding-boxes.
     /// </summary>
-    public struct AabbElement : ITypedElement<Aabb>
+    public struct AabbElement : TypedElement<Aabb>
     {
         /* Public properties. */
-        public Element Element { get; private set; }
+        public Element Element { get; set; }
         public string Name => Element.Name;
         public Aabb Value
         {

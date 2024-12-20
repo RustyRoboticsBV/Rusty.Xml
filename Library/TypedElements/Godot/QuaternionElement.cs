@@ -6,10 +6,10 @@ namespace Rusty.Xml
     /// <summary>
     /// An XML element parser for quaternions.
     /// </summary>
-    public struct QuaternionElement : ITypedElement<Quaternion>
+    public struct QuaternionElement : TypedElement<Quaternion>
     {
         /* Public properties. */
-        public Element Element { get; private set; }
+        public Element Element { get; set; }
         public string Name => Element.Name;
         public Quaternion Value
         {

@@ -6,10 +6,10 @@ namespace Rusty.Xml
     /// <summary>
     /// An XML element parser for RGB(A) colors.
     /// </summary>
-    public struct ColorElement : ITypedElement<Color>
+    public struct ColorElement : TypedElement<Color>
     {
         /* Public properties. */
-        public Element Element { get; private set; }
+        public Element Element { get; set; }
         public string Name => Element.Name;
         public Color Value
         {

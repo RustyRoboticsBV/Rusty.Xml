@@ -6,10 +6,10 @@ namespace Rusty.Xml
     /// <summary>
     /// An XML element parser for 2D, floating-point rectangles.
     /// </summary>
-    public struct Rect2Element : ITypedElement<Rect2>
+    public struct Rect2Element : TypedElement<Rect2>
     {
         /* Public properties. */
-        public Element Element { get; private set; }
+        public Element Element { get; set; }
         public string Name => Element.Name;
         public Rect2 Value
         {

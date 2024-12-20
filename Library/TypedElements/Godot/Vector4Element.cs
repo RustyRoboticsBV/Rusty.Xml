@@ -6,10 +6,10 @@ namespace Rusty.Xml
     /// <summary>
     /// An XML element parser for floating-point vectors with four elements.
     /// </summary>
-    public struct Vector4Element : ITypedElement<Vector4>
+    public struct Vector4Element : TypedElement<Vector4>
     {
         /* Public properties. */
-        public Element Element { get; private set; }
+        public Element Element { get; set; }
         public string Name => Element.Name;
         public Vector4 Value
         {

@@ -129,9 +129,15 @@ namespace Rusty.Xml
             throw new KeyNotFoundException($"XML element '{Name}' has no child element with the name '{name}'.");
         }
 
-        public T GetChild<T>(string name) where T : Element
+        /// <summary>
+        /// Get a typed child element by name.
+        /// </summary>
+        public T GetChild<T>(string name) where T : ElementContainer, new()
         {
             Element element = GetChild(name);
+            T typed = new T();
+            typed.Element = element;
+            return typed;
         }
 
         /// <summary>

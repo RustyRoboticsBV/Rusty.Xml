@@ -5,10 +5,10 @@ namespace Rusty.Xml
     /// <summary>
     /// An XML element parser for integer numbers.
     /// </summary>
-    public struct IntElement : ITypedElement<int>
+    public struct IntElement : TypedElement<int>
     {
         /* Public properties. */
-        public Element Element { get; private set; }
+        public Element Element { get; set; }
         public string Name => Element.Name;
         public int Value
         {
