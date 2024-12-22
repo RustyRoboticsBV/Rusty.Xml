@@ -15,19 +15,11 @@ namespace Rusty.Xml
         {
             get
             {
-                float r = (FloatElement)Element.Children[0];
-                float g = (FloatElement)Element.Children[1];
-                float b = (FloatElement)Element.Children[2];
-                float a = Element.Children.Count > 3 ? (FloatElement)Element.Children[3] : 1f;
-                return new Color(r, g, b, a);
+                return Color.FromHtml(Element.InnerText);
             }
             set
             {
-                Element.Children[0].InnerText = value.R.ToString();
-                Element.Children[1].InnerText = value.G.ToString();
-                Element.Children[2].InnerText = value.B.ToString();
-                if (Element.Children.Count > 3)
-                    Element.Children[3].InnerText = value.A.ToString();
+                Element.InnerText = value.ToHtml(value.A < 1);
             }
         }
 

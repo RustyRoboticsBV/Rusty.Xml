@@ -8,6 +8,6 @@
         /// <summary>
         /// The value of the parsed XML element.
         /// </summary>
-        public T Value { get; set; }
+        public T Value { get; }
     }
 }

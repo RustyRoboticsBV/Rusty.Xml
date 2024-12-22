@@ -130,6 +130,19 @@ namespace Rusty.Xml
         }
 
         /// <summary>
+        /// Check if this element has a child element with some name.
+        /// </summary>
+        public bool HasChild(string name)
+        {
+            foreach (Element child in Children)
+            {
+                if (child.Name == name)
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Get a typed child element by name.
         /// </summary>
         public T GetChild<T>(string name) where T : ElementContainer, new()
@@ -151,6 +164,19 @@ namespace Rusty.Xml
                     return attribute;
             }
             throw new KeyNotFoundException($"XML element '{Name}' has no attribute with the name '{name}'.");
+        }
+
+        /// <summary>
+        /// Check if this element has an attribute with some name.
+        /// </summary>
+        public bool HasAttribute(string name)
+        {
+            foreach (Attribute attribute in Attributes)
+            {
+                if (attribute.Name == name)
+                    return true;
+            }
+            return false;
         }
 
         /// <summary>
