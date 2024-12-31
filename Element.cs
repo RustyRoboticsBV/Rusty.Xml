@@ -143,17 +143,6 @@ namespace Rusty.Xml
         }
 
         /// <summary>
-        /// Get a typed child element by name.
-        /// </summary>
-        public T GetChild<T>(string name) where T : ElementContainer, new()
-        {
-            Element element = GetChild(name);
-            T typed = new T();
-            typed.Element = element;
-            return typed;
-        }
-
-        /// <summary>
         /// Get an attribute by name.
         /// </summary>
         public Attribute GetAttribute(string name)
