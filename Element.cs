@@ -184,15 +184,21 @@ namespace Rusty.Xml
         {
             string indent = new string(' ', indentLevel);
 
+            string header = name;
+            foreach (Attribute attribute in Attributes)
+            {
+                header += $" {attribute.Name}=\"{attribute.Value}\"";
+            }
+
             if (children.Count == 0 && innerText == "")
-                return indent + $"<{name}/>";
+                return indent + $"<{header}/>";
 
             else if (children.Count == 0)
-                return indent + $"<{name}>{innerText}</{name}>";
+                return indent + $"<{header}>{innerText}</{name}>";
 
             else
             {
-                string xml = indent + $"<{name}>";
+                string xml = indent + $"<{header}>";
                 foreach (Element child in children)
                 {
                     xml += "\n" + child.GenerateXml(indentLevel + 1);
