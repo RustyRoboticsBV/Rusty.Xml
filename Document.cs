@@ -1,11 +1,10 @@
 #if GODOT
 using Godot;
-using System;
-
 #elif UNITY_5_3_OR_NEWER
 using UnityEngine;
 #endif
 
+using System;
 using System.IO;
 using System.Xml;
 
